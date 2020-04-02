@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>edit</title>
+</head>
+<body>
+    <main>
+        <form th:object="${task}" method="post" action="#" th:action="@{/tasks/edit/{id}(id=${task.id})}">
+            <label for="name" >Task name</label>
+            <input id="name" type="text" name="name" th:field="*{name}"/>
+            <label for="date">date</label>
+            <input id="date" type="date" name="date" th:field="*{date}" />
+            <label for="time">time</label>
+            <input id="time" type="time" name="time" th:field="*{time}" />
+            <label for="description">description</label>
+            <input id="description" type="text" name="description" th:field="*{description}"/>
+            <input type="submit"/>
+        </form>
+    </main>
+</body>
+</html>

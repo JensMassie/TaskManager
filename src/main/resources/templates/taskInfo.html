@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Info</title>
+</head>
+<body>
+
+<ul>
+    <li th:text="${obj.id}"></li>
+    <li th:text="${obj.name}"></li>
+    <li th:text="${obj.time}"></li>
+    <li th:text="${obj.date}"></li>
+    <li th:text="${obj.description}"></li>
+    <h2>Subtasks:</h2>
+    <div th:each="sub : ${subtasks}">
+        <li th:text="${sub.name}"></li>
+        <li th:text="${sub.description}"></li>
+    </div>
+</ul>
+
+</body>
+</html>
