@@ -48,4 +48,17 @@ public class TaskServiceImpl implements TaskService{
         task.addSubTask(subTask);
         repo.saveAndFlush(task);
     }
+
+    public void editTask(Task task, String id){
+        UUID uuid = UUID.fromString(id);
+        Task correspondingTask = getTaskFromId(uuid);
+        correspondingTask.setDate(task.getDate());
+        correspondingTask.setTime(task.getTime());
+        correspondingTask.setDescription(task.getDescription());
+        correspondingTask.setName(task.getName());
+        repo.save(correspondingTask);
+    }
+    public void saveAndFlushTaskToRepo(Task task){
+        repo.saveAndFlush(task);
+    }
 }

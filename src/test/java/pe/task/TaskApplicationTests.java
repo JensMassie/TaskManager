@@ -11,6 +11,7 @@ import pe.task.service.TaskServiceImpl;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -27,6 +28,9 @@ class TaskApplicationTests {
     //TaskService
     @Test
     void AddTask_AllValuesSet_addsTask(){
+        List<Task> tasks = service.getTasks();
+
+        int oSize = tasks.size();
         Task task = new Task();
         task.setName("TestTask");
         task.setTime(LocalTime.of(2,2));
@@ -34,14 +38,28 @@ class TaskApplicationTests {
         task.setDescription("This is a test");
         service.addTask(task);
 
-        List<Task> tasks = service.getTasks();
+        tasks = service.getTasks();
 
 
         assertNotNull(tasks);
         assertFalse(tasks.isEmpty());
-        assertEquals(1, tasks.size());
-        Task taskTest = tasks.get(0);
+        assertEquals(oSize + 1, tasks.size());
+        Task taskTest = tasks.get(oSize);
         assertEquals(taskTest.getId(), task.getId());
+    }
+
+    @Test
+    void getTaskFromId_returnsTask(){
+        Task task = new Task();
+        task.setName("TestTask");
+        task.setTime(LocalTime.of(2,2));
+        task.setDate(LocalDate.of(2000, 2, 6));
+        task.setDescription("This is a test");
+        service.addTask(task);
+
+        UUID id = task.getId();
+        Task newtask = service.getTaskFromId(id);
+        assertEquals(task.getId(), newtask.getId());
     }
 
     //Task

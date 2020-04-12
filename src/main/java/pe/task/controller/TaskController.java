@@ -38,7 +38,6 @@ public class TaskController {
     public String editTask(@PathVariable("id") String id, Model model){
         try {
             UUID uuid = UUID.fromString(id);
-
             Task task = taskService.getTaskFromId(uuid);
             model.addAttribute("task", task);
             return "editTask.html";
@@ -57,7 +56,6 @@ public class TaskController {
     public String addSubTask(@PathVariable("id") String id, @ModelAttribute SubTask subTask, Model model){
         try {
             UUID uuid = UUID.fromString(id);
-            System.out.println(uuid);
             taskService.addSubTaskToTask(uuid, subTask);
         }catch (Exception e){
             model.addAttribute("error", "TaskNotFound");
@@ -70,14 +68,7 @@ public class TaskController {
     public String edit(@ModelAttribute Task task, @PathVariable String id, Model model) {
         System.out.println(id);
         try{
-            UUID uuid = UUID.fromString(id);
-            Task correspondingTask = taskService.getTaskFromId(uuid);
-            correspondingTask.setDate(task.getDate());
-            correspondingTask.setTime(task.getTime());
-            correspondingTask.setDescription(task.getDescription());
-            correspondingTask.setName(task.getName());
-            repository.save(correspondingTask);
-
+            taskService.editTask(task, id);
         }catch (Exception e){return "redirect:/tasks";}
         model.addAttribute("tasks", repository.findAll());
 
@@ -91,7 +82,7 @@ public class TaskController {
 
     @PostMapping("/new")
     public String form(@ModelAttribute Task task){
-        repository.saveAndFlush(task);
+        taskService.saveAndFlushTaskToRepo(task);
         return "redirect:/tasks";
     }
 

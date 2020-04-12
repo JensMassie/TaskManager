@@ -36,7 +36,6 @@ public class Task {
 
     public Task(){
         subTasks = new ArrayList<>();
-
     }
 
     public Task(String name, LocalTime time, LocalDate date, String description){

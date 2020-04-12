@@ -12,4 +12,6 @@ public interface TaskService {
     void addTask(Task task);
     Task getTaskFromId(UUID id);
     void addSubTaskToTask(UUID uuid, SubTask subTask);
+    void editTask(Task task, String id);
+    void saveAndFlushTaskToRepo(Task task);
 }
