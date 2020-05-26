@@ -5,19 +5,27 @@
     <title>Info</title>
 </head>
 <body>
+<p th:text="#{changelang}"></p>
+<p><a href="/tasks?lang=en"><div th:text="#{lang.en}"></div></a></p>
+<p><a href="/tasks?lang=nl"><div th:text="#{lang.nl}"></div></a></p>
 
-<ul>
-    <li th:text="${obj.id}"></li>
-    <li th:text="${obj.name}"></li>
-    <li th:text="${obj.time}"></li>
-    <li th:text="${obj.date}"></li>
-    <li th:text="${obj.description}"></li>
-    <h2>Subtasks:</h2>
+    <h2 th:text="${obj.name}"></h2>
+    <h3 th:text="#{Date}"></h3>
+    <p th:text="${obj.date}"></p>
+
+    <h3 th:text="#{Time}"></h3>
+    <p th:text="${obj.time}"></p>
+
+    <h3 th:text="#{Description}"></h3>
+    <p th:text="${obj.description}"></p>
+
+    <h3>Id</h3>
+    <p th:text="${obj.id}"></p>
+
+    <h2 th:text="#{subtask}"></h2>
     <div th:each="sub : ${subtasks}">
-        <li th:text="${sub.name}"></li>
-        <li th:text="${sub.description}"></li>
+        <p th:text="${sub.name + ': ' + sub.description }"></p>
     </div>
-</ul>
 
 </body>
 </html>

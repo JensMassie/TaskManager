@@ -6,12 +6,19 @@
 </head>
 <body>
 <main>
+    <p th:text="#{changelang}"></p>
+    <p><a href="/tasks?lang=en"><div th:text="#{lang.en}"></div></a></p>
+    <p><a href="/tasks?lang=nl"><div th:text="#{lang.nl}"></div></a></p>
+
+    <h1 th:text="#{subtasktitle}">Create a subtask</h1>
+    <p th:text="#{subtasktext}"></p> <a href="/tasks"><div th:text="#{goback}"></div></a>
+
     <form method="post">
-        <label for="name">name</label>
+        <label for="name" th:text="#{Name}"></label>
         <input id="name" type="text" name="name">
-        <label for="description">description</label>
+        <label for="description" th:text="#{Description}"></label>
         <input id="description" type="text" name="description">
-        <input type="submit">
+        <input type="submit" value="OK">
     </form>
 </main>
 </body>

@@ -6,12 +6,43 @@
 </head>
 <body>
 <main>
+
+    <p th:text="#{changelang}"></p>
+    <p><a href="/tasks?lang=en"><div th:text="#{lang.en}"></div></a></p>
+    <p><a href="/tasks?lang=nl"><div th:text="#{lang.nl}"></div></a></p>
+
+    <h1 th:text="#{mainTitle}">Taks list</h1>
+
+
+    <p th:text="#{introtext}"></p>
+
+    <p th:text="#{addtask}"></p><a href="/tasks/new"><div th:text="#{newtask}"></div></a>
+
     <p th:if="${error != null}" th:text="${error}"></p>
-    <ul th:each="tas : ${task}">
-        <a th:href="@{'/tasks/' + ${tas.id}}"><li th:text="${tas.name + tas.time + tas.date}"></li></a>
-        <a th:href="@{'/tasks/edit/' + ${tas.id}}"><p>edit</p></a>
-        <a th:href="@{'/tasks/' + ${tas.id} + '/sub/create'}"><p>Add subtask</p></a>
-    </ul>
+    <table>
+        <tr>
+            <th th:text="#{Name}"></th>
+            <th th:text="#{Date}"></th>
+            <th th:text="#{Time}"></th>
+            <th th:text="#{Edit}"></th>
+            <th th:text="#{CreateSubtask}"></th>
+            <th th:text="#{View}"></th>
+        </tr>
+        <tr th:each="tas : ${task}">
+            <td th:text="${tas.name}"></td>
+            <td th:text="${tas.date}"></td>
+            <td th:text="${tas.time}"></td>
+            <td><a th:href="@{'/tasks/edit/' + ${tas.id}}"><div th:text="#{Edit}"></div ></a></td>
+            <td><a th:href="@{'/tasks/' + ${tas.id} + '/sub/create'}"><div th:text="#{CreateSubtask}"></div></a></td>
+            <td><a th:href="@{'/tasks/' + ${tas.id}}"><div th:text="#{View}"></div></a></td>
+        </tr>
+    </table>
+
+<!--    <ul th:each="tas : ${task}">
+        <a ><li th:text="${tas.name + tas.time + tas.date}"></li></a>
+        <a ><p>edit</p></a>
+        <a ><p>Add subtask</p></a>
+    </ul>-->
 </main>
 </body>
 </html>
