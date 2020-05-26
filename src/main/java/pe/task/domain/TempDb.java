@@ -1,3 +1,4 @@
+/*
 package pe.task.domain;
 
 import java.rmi.server.UID;
@@ -20,3 +21,4 @@ public class TempDb {
         return list;
     }
 }
+*/

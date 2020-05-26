@@ -6,16 +6,24 @@
 </head>
 <body>
     <main>
+        <p th:text="#{changelang}"></p>
+        <p><a href="/tasks?lang=en"><div th:text="#{lang.en}"></div></a></p>
+        <p><a href="/tasks?lang=nl"><div th:text="#{lang.nl}"></div></a></p>
+
+        <h1 th:text="#{edittitle}"></h1>
+        <p th:text="#{edittext}"> </p> <a href="/tasks"><div th:text="goback"></div></a>
+
+
         <form th:object="${task}" method="post" action="#" th:action="@{/tasks/edit/{id}(id=${task.id})}">
-            <label for="name" >Task name</label>
+            <label for="name" th:text="#{Name}"></label>
             <input id="name" type="text" name="name" th:field="*{name}"/>
-            <label for="date">date</label>
+            <label for="date" th:text="#{Date}">date</label>
             <input id="date" type="date" name="date" th:field="*{date}" />
-            <label for="time">time</label>
+            <label for="time" th:text="#{Time}">time</label>
             <input id="time" type="time" name="time" th:field="*{time}" />
-            <label for="description">description</label>
+            <label for="description" th:text="#{Description}">description</label>
             <input id="description" type="text" name="description" th:field="*{description}"/>
-            <input type="submit"/>
+            <input type="submit" value="OK"/>
         </form>
     </main>
 </body>
