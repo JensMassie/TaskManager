@@ -31,7 +31,7 @@ public class TaskController {
     @GetMapping
     public String index(Model model){
         model.addAttribute("task", taskService.getTasks());
-        return "task.html";
+        return "index.html";
     }
 
     @RequestMapping("/edit/{id}")
@@ -44,7 +44,7 @@ public class TaskController {
 
         }catch (Exception e){
             model.addAttribute("error", "TaskNotFound");
-            return "task.html";
+            return "index.html";
         }
     }
 
@@ -59,7 +59,7 @@ public class TaskController {
             taskService.addSubTaskToTask(uuid, subTask);
         }catch (Exception e){
             model.addAttribute("error", "TaskNotFound");
-            return "task.html";
+            return "index.html";
         }
         return "redirect:/tasks";
     }
@@ -97,7 +97,7 @@ public class TaskController {
 
         }catch (Exception e){
             model.addAttribute("error", "TaskNotFound");
-            return "task.html";
+            return "index.html";
         }
     }
 
